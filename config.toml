@@ -4,7 +4,7 @@ baseURL = "http://example.org/"
 theme = "LoveIt"
 
 # website title
-title = "My New Hugo Site"
+title = "两个二十岁出头的年轻人"
 
 # language code ["en", "zh-CN", "fr", "pl", ...]
 languageCode = "en"
@@ -13,9 +13,15 @@ languageName = "English"
 
 # Author config
 [author]
-  name = "xxxx"
-  email = ""
-  link = ""
+  [[author.wcy]]
+    name = "舵手一号"
+    email = ""
+    link = ""
+  [[author.cyc]]
+    name = "舵手二号"
+    email = ""
+    link = ""
+
 
 # Menu config
 [menu]
