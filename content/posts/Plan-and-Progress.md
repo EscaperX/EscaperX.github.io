@@ -1,7 +1,7 @@
 ---
 title: Plan and Progress
 date: 2099-01-01 00:00:00
-draft: false
+draft: true
 tags:
 ---
 

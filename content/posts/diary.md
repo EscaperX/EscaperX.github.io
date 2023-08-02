@@ -61,6 +61,14 @@ seo:
 
 <!--more-->
 
+## 2023-07-26
+
+Depressing. 
+
+Music seems to be the final thing which it's not so boring. 
+
+Best wishes.
+
 ## 2023-04-24
 
 Human's confidence is a interesting thing. It drives them to argue with anyone on anything.
