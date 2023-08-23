@@ -1,7 +1,7 @@
 ---
 title: The First Article by Cyc
 date: 2022-09-18 16:49:18
-draft: false
+draft: true
 tags:
 categories: [Diary]
 ---

@@ -1,8 +1,8 @@
 ---
-title: "Geometry Process in UE"
-subtitle: ""
-date: 2023-06-25T17:59:34+08:00
-lastmod: 2023-06-25T17:59:34+08:00
+title: "C++"
+subtitle: "Everything about C++"
+date: 2023-08-03T13:29:43+08:00
+lastmod: 2023-08-03T13:29:43+08:00
 draft: true
 author: ""
 authorLink: ""
@@ -10,7 +10,7 @@ description: ""
 license: ""
 images: []
 
-tags: [GeometryProcess]
+tags: []
 categories: []
 
 featuredImage: ""
@@ -59,14 +59,13 @@ seo:
   # ...
 ---
 
+This is a home page for C++, which is a tremendous but powerful beast. The features and tricks are too numerous to be
+written in one blog.
 <!--more-->
 
-# DynamicMesh
+# Basic C++
 
-DynamicMesh is actually a similiar data structure with half-edge representation which provides connectivity and orientation of mesh.
 
-DynamicMesh stores vertices, per-vertex vertex normals, colors, uvs and a list of connected edges.
 
-For edges, it stores two vertices and two adjacent triangles (if it is boundary, leave the latter one invalid). So In a "ordinary" (I know nothing about manifold so I could just use "oridnary" to represent a pretty mesh) mesh, so you can traverse all the edges in order following the adjacent triangles. (What if two opposite cones with the overlap peak?)
-
+# Modern C++
 

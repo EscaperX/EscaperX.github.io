@@ -67,12 +67,27 @@ Here're some tips on the common build tools like git, cmake, shell and so on.
 
 # Cmake
 
-## Learn Cmake from Explosion
+## Commands
+
+`add_custom_target`
+
+```cmake
+add_custom_target(Name [ALL] [command1 [args1...]]
+                  [COMMAND command2 [args2...] ...]
+                  [DEPENDS depend depend depend ... ]
+                  [BYPRODUCTS [files...]]
+                  [WORKING_DIRECTORY dir]
+                  [COMMENT comment]
+                  [JOB_POOL job_pool]
+                  [VERBATIM] [USES_TERMINAL]
+                  [COMMAND_EXPAND_LISTS]
+                  [SOURCES src1 [src2...]])
+```
 
 ## Learn from OpenXLSX
 
-[OpenXLSX](https://github.com/troldal/OpenXLSX) is a great library for Microsoft Excel files, which also provides an reduced but complete 
-CMakeList file. 
+[OpenXLSX](https://github.com/troldal/OpenXLSX) is a great library for Microsoft Excel files, which also provides an reduced but complete
+CMakeList file.
 
 ```cmake
 #=======================================================================================================================
@@ -117,6 +132,10 @@ if(${OPENXLSX_CREATE_DOCS})
     add_subdirectory(Documentation)
 endif()
 ```
-### function
 
-### 
+## Learn Cmake from Explosion
+
+Explosion provides clear and modularized cmake files. The standardized functions are worth following to add external libraries and add targets.
+
+
+# Doxygen
