@@ -164,3 +164,13 @@ Because there's a implicit cast from int to const int, which may introduce overh
 <!--block-->
 What if a vector clears itself while a iterator is enumerating it?
 <!--[iterator, vector]-->
+
+
+# Idioms
+
+## Pointer to implementation (PIMPL)
+I'm quite curious that why cppref puts pimpl in *idiom* section. I use to regard it as a kind of design pattern.
+
+<!--block-->
+
+<!--[idiom, pimpl, design pattern]>

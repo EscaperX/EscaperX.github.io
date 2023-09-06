@@ -1,8 +1,8 @@
 ---
-title: "C++"
-subtitle: "Everything about C++"
-date: 2023-08-03T13:29:43+08:00
-lastmod: 2023-08-03T13:29:43+08:00
+title: "Tricks and Hacks"
+subtitle: ""
+date: 2023-09-06T11:45:07+08:00
+lastmod: 2023-09-06T11:45:07+08:00
 draft: true
 author: ""
 authorLink: ""
@@ -59,14 +59,22 @@ seo:
   # ...
 ---
 
-This is a home page for C++, which is a tremendous but powerful beast. The features and tricks are too numerous to be
-written in one blog.
 <!--more-->
+### std::string and c-style strings
 
-# Basic C++
+`std::string` can hold `'\0'`, but if use c-style string to construct a std::string, it will iterate from the start pointer and stop at the first `\0`.
+But you can also specify the length or using `std::string_literals;` to avoid that.
+```c++
+std::string str = "12345";
+str[3] = '\0';
+std::cout << str;
+// output: 1235
+std::string str("123\05");
+std::cout << str;
+// output: 123
+std::string str("123\05", 5);
+std::cout << str;
+// output: 1235
+```
 
 
-
-# Modern C++
-
-# Trick or Hacks

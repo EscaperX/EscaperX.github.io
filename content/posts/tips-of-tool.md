@@ -67,6 +67,8 @@ Here're some tips on the common build tools like git, cmake, shell and so on.
 
 # Cmake
 
+A good course: Udemy cmake 2022.
+
 ## Commands
 
 `add_custom_target`
@@ -139,3 +141,12 @@ Explosion provides clear and modularized cmake files. The standardized functions
 
 
 # Doxygen
+
+# Visual Studio
+
+Close the unsafe warnings for `strcpy, sprintf, strdup`.
+Add the following macros into preprocessor definitions.
+```
+_CRT_SECURE_NO_WARNINGS
+
+```
