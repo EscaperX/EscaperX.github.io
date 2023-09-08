@@ -2,7 +2,7 @@
 title: "Computer System: A Programmer's Perspective"
 subtitle: ""
 date: 2023-09-06T09:59:43+08:00
-lastmod: 2023-09-06T09:59:43+08:00
+lastmod: ["lastmod", ":git", "date", "publishDate"]
 draft: false
 author: ""
 authorLink: ""
@@ -59,7 +59,12 @@ seo:
   # ...
 ---
 
+Useful topics in CSAPP
+
 <!--more-->
+
+**Prelude**: The notes provided here are not simply copied from the textbook. I select topics that suprise me, focusing on comparing the different explanations or
+examing practical applications. So I would omit many conventional definitions and derivations. I wil be very happy if these notes assist you in comprehending various concepts or understanding the underlying reasons.
 
 # Representing and Manipulating information
 
@@ -88,7 +93,7 @@ We can also find that the unsigned value of the 2's complement encoding is $2^w 
 
 ### Shfiting
 
-We all know that it's dangerous to convert between signed and unsigned value.
+As it is widely known that it's dangerous to convert between signed and unsigned value.
 And based on the 2's complement encoding, here're some behaviours:
 ```c++
 void print(unsigned char *p, int len) {
@@ -118,3 +123,27 @@ y <<= 1;
 
 We can also find the operating system is little-endian.
 
+## Integer Arithmetic
+
+### Unsigned Addition
+
+Unsigned Addition is actually modular addition, which forms an *abelian group*.
+Although I know nothing about the theory of group, I would take it natural that the modular addtion has an identity element 0 and every element has an additive inverse,
+just like what we see in natrual numbers and vectors in linear algebra.
+
+The following discussion is based on the hypothesis that $x$ and $y$ are unsigned integers represented by $w$ bits.
+
+- How to detect overflow?
+
+We know that $x + y \geq x$ if there's no overflow. And at "most" time the result will be smaller than $x$ if an overflow occurs.
+But is it possible that we may choose a $y$ that $x + y > 2^w > x$ ? No, unless $y > 2^w$ that will never happen.
+
+So simply `return x + y < x;` is enough.
+
+- What's the additive inverse of $x$?
+
+This actually has been discussed in the previous section, "the unsigned value of the 2's complement encoding is $2^w - x$".
+Because the 2's complement encoding of non-negtive value is the same to its binary representation ,and there's no concept of "nagative" here,
+so everything is suitable here.
+
+But this proof is still too complicated. A intuitive explanation is, in unsigned addition we have $2^w = 0$. $x + (-x) = 2^w$, so $(-x) = 2^w - x$.
