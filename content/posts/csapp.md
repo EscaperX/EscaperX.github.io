@@ -67,7 +67,7 @@ Useful topics in CSAPP
 **Prelude**: The notes provided here are not simply copied from the textbook. I select topics that suprise me, focusing on comparing the different explanations or
 examing practical applications. So I would omit many conventional definitions and derivations. I wil be very happy if these notes assist you in comprehending various concepts or understanding the underlying reasons.
 
-9.12:
+9.12: My reading of chapter 2 is over. Here's my lab repository: [link](https://github.com/EscaperX/CSAPP). 
 
 # Representing and Manipulating information
 
@@ -203,3 +203,56 @@ For a bit vector with length $w$: ${b_{w-1}, \dots, b_0}$. If we shift it right 
 
 So the problem turns to "Is there any bits equaling to 1 in the last k bits?". So we just add an extra bias $(1 << k) - 1$, which will contributes to the $b_k$ bit if such bit exists.
 
+## Floating Point
+
+
+It's highly recommended to read the related content in the textbook carefully. Maybe in the future I will derivate the definition and property again in this section.
+
+## Lab1: data lab
+
+Most of the thoughts are written in the comment of the source code *bits.c*. Some interesting experience or discovery will be recoreded here. 
+
+I personaly don't suggest spending a lot of time on it. Because this is too tricky to use in common development. You may find the result is unexpected using different compilers on various environments.
+Here is my own experience.
+
+I simply copied what I submitted on the Gcc Bugzilla, where people post mistakes they find on gcc compilers.
+
+```
+I happened to find this problem when I did the CSAPP lab.
+
+int isTmax(int x) {
+  // make it all of 1
+  // it's quite strange that the results of x + 1 + x and x + x + 1 are different
+  int c = x + x + 1;
+  // check if it's all of 1
+  int flag_all_ones = !(~c);
+  // avoid -1
+  int flag_not_neg1 = !!(x + 1);
+  return flag_all_ones & flag_not_neg1;
+}
+
+This function will be incorrectly optimized to return zero only with "-O2" compiler flag. But in fact isTmax(0x7fffffff) should return 1. Here's the disassembly code using coredump:
+
+000012ac <isTmax>:
+  // check if it's all of 1
+  int flag_all_ones = !(~c);
+  // avoid -1
+  int flag_not_neg1 = !!(x + 1);
+  return flag_all_ones & flag_not_neg1;
+}
+    12ac:	b8 00 00 00 00       	mov    $0x0,%eax
+    12b1:	c3                   	ret    
+
+This function can be correctly compiled with no compiler optimization (-O0). 
+And this behaviour always occurs using the latest 2 version gcc compiler (from 11.0 to 12.0). But using clang or msvc, everything works well. 
+```
+
+And an engieer replied quickly:
+
+```
+Signed integer overflow is undefined behavior. 
+
+Use -fwrapv or unsigned to do the addition to get the behavior you want.
+```
+
+Lol, UB again.
