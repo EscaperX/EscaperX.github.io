@@ -63,15 +63,17 @@ Useful topics in CSAPP
 
 <!--more-->
 
-# update log
+## update log
 **Prelude**: The notes provided here are not simply copied from the textbook. I select topics that suprise me, focusing on comparing the different explanations or
 examing practical applications. So I would omit many conventional definitions and derivations. I wil be very happy if these notes assist you in comprehending various concepts or understanding the underlying reasons.
 
 9.12: My reading of chapter 2 is over. Here's my lab repository: [link](https://github.com/EscaperX/CSAPP). 
+9.13: Update some notes when doing lab1
+9.14: Lab1 finished
 
-# Representing and Manipulating information
+## Representing and Manipulating information
 
-## Two's-Complement Encodings
+### Two's-Complement Encodings
 
 The definition in the book is new to me:
 > For vector $\overrightarrow{x} = {x_{w-1}, x_{w-2}, \dots, x_0}$:
@@ -94,7 +96,7 @@ So the value of bits, except for the sign bit, is actually $2^{w-1} - x$. And th
 
 We can also find that the unsigned value of the 2's complement encoding is $2^w - x$. That's what "2's complement" represents.
 
-### Shfiting
+#### Shfiting
 
 As it is widely known that it's dangerous to convert between signed and unsigned value.
 And based on the 2's complement encoding, here're some behaviours:
@@ -126,9 +128,9 @@ y <<= 1;
 
 We can also find the operating system is little-endian.
 
-## Integer Arithmetic
+### Integer Arithmetic
 
-### Unsigned Arithmetic
+#### Unsigned Arithmetic
 
 Unsigned Addition is actually modular addition, which forms an *abelian group*.
 Although I know nothing about the theory of group, I would take it natural that the modular addtion has an identity element 0 and every element has an additive inverse,
@@ -151,7 +153,7 @@ so everything is suitable here.
 
 But this proof is still too complicated. A intuitive explanation is, in unsigned addition we have $2^w = 0$. $x + (-x) = 2^w$, so $(-x) = 2^w - x$.
 
-### Two's Complement Arithmetic
+#### Two's Complement Arithmetic
 
 The textbook dedicates to build the relationship between number, code and arithmetic. There're many aspects when discussing computation on two's complement encoding.
 
@@ -187,7 +189,7 @@ Notice that two's complement arithmetic also forms an *abelian group*. You may b
 **And a good practice is, try to extend these theory to *inverse code*, which only use the most significant bit as sign bit, and find out why it's not a good choice for
 number representation in computer.**
 
-### Multiplication and Division
+#### Multiplication and Division
 
 Multiplication and division of unsigned integer is very simple, so I just omit them here.
 
@@ -203,12 +205,12 @@ For a bit vector with length $w$: ${b_{w-1}, \dots, b_0}$. If we shift it right 
 
 So the problem turns to "Is there any bits equaling to 1 in the last k bits?". So we just add an extra bias $(1 << k) - 1$, which will contributes to the $b_k$ bit if such bit exists.
 
-## Floating Point
+### Floating Point
 
 
 It's highly recommended to read the related content in the textbook carefully. Maybe in the future I will derivate the definition and property again in this section.
 
-## Lab1: data lab
+### Lab1: data lab
 
 Most of the thoughts are written in the comment of the source code *bits.c*. Some interesting experience or discovery will be recoreded here. 
 
@@ -231,7 +233,8 @@ int isTmax(int x) {
   return flag_all_ones & flag_not_neg1;
 }
 
-This function will be incorrectly optimized to return zero only with "-O2" compiler flag. But in fact isTmax(0x7fffffff) should return 1. Here's the disassembly code using coredump:
+This function will be incorrectly optimized to return zero only with "-O2" compiler flag. 
+But in fact isTmax(0x7fffffff) should return 1. Here's the disassembly code using coredump:
 
 000012ac <isTmax>:
   // check if it's all of 1
@@ -244,7 +247,8 @@ This function will be incorrectly optimized to return zero only with "-O2" compi
     12b1:	c3                   	ret    
 
 This function can be correctly compiled with no compiler optimization (-O0). 
-And this behaviour always occurs using the latest 2 version gcc compiler (from 11.0 to 12.0). But using clang or msvc, everything works well. 
+And this behaviour always occurs using the latest 2 version gcc compiler (from 11.0 to 12.0). 
+But using clang or msvc, everything works well. 
 ```
 
 And an engieer replied quickly:
