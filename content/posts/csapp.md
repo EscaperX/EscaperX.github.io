@@ -67,11 +67,12 @@ Useful topics in CSAPP
 **Prelude**: The notes provided here are not simply copied from the textbook. I select topics that suprise me, focusing on comparing the different explanations or
 examing practical applications. So I would omit many conventional definitions and derivations. I wil be very happy if these notes assist you in comprehending various concepts or understanding the underlying reasons.
 
-9.12: My reading of chapter 2 is over. Here's my lab repository: [link](https://github.com/EscaperX/CSAPP). 
+9.12: My reading of chapter 2 is over. Here's my lab repository: [link](https://github.com/EscaperX/CSAPP).
 9.13: Update some notes when doing lab1
 9.14: Lab1 finished
+9.20: Almost finish lab2 bomb and add simple summary for chapter 3 here.
 
-## Representing and Manipulating information
+## Chapter 1: Representing and Manipulating information
 
 ### Two's-Complement Encodings
 
@@ -212,7 +213,7 @@ It's highly recommended to read the related content in the textbook carefully. M
 
 ### Lab1: data lab
 
-Most of the thoughts are written in the comment of the source code *bits.c*. Some interesting experience or discovery will be recoreded here. 
+Most of the thoughts are written in the comment of the source code *bits.c*. Some interesting experience or discovery will be recoreded here.
 
 I personaly don't suggest spending a lot of time on it. Because this is too tricky to use in common development. You may find the result is unexpected using different compilers on various environments.
 Here is my own experience.
@@ -233,7 +234,7 @@ int isTmax(int x) {
   return flag_all_ones & flag_not_neg1;
 }
 
-This function will be incorrectly optimized to return zero only with "-O2" compiler flag. 
+This function will be incorrectly optimized to return zero only with "-O2" compiler flag.
 But in fact isTmax(0x7fffffff) should return 1. Here's the disassembly code using coredump:
 
 000012ac <isTmax>:
@@ -244,19 +245,37 @@ But in fact isTmax(0x7fffffff) should return 1. Here's the disassembly code usin
   return flag_all_ones & flag_not_neg1;
 }
     12ac:	b8 00 00 00 00       	mov    $0x0,%eax
-    12b1:	c3                   	ret    
+    12b1:	c3                   	ret
 
-This function can be correctly compiled with no compiler optimization (-O0). 
-And this behaviour always occurs using the latest 2 version gcc compiler (from 11.0 to 12.0). 
-But using clang or msvc, everything works well. 
+This function can be correctly compiled with no compiler optimization (-O0).
+And this behaviour always occurs using the latest 2 version gcc compiler (from 11.0 to 12.0).
+But using clang or msvc, everything works well.
 ```
 
 And an engieer replied quickly:
 
 ```
-Signed integer overflow is undefined behavior. 
+Signed integer overflow is undefined behavior.
 
 Use -fwrapv or unsigned to do the addition to get the behavior you want.
 ```
 
 Lol, UB again.
+
+## Chapter 3: Machine-Level Representation
+
+This is a quite boring chapter. Reading manual of instructions is very very boring.
+I still believe you can simply take these contents as manual, where you can look up things you happen meet.
+And you will be experienced dealing with those pattern. If you have taken courses like CS161 before, it's enough for you to do the lab bomb.
+
+The final several sections are worth reading. If you have to work with languages like c or cpp, great care have to be taken
+reading *Heterogeneous Data Structures* (I know nothing about front-end development. Maybe it's euqally important in that field).
+*Combining Control and Data in Machine-Level Programs* makes brief discussion on the topic that CS161 involved.
+If you had read these before, maybe it would be easier in that summer. My bad.
+
+
+> About Lab2: I don't think it's as fun as exploiting in CS161. Those functions are all about logic.
+> Given a lot of meaningless code and control flow, you have to find the right hole and jump into it.
+
+> I did all the lab by static analysis, which is just reading the code and figure out how they actually work.
+> Because all the information you need is in the disassembled code and there're no runtime
