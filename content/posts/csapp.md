@@ -71,6 +71,7 @@ examing practical applications. So I would omit many conventional definitions an
 9.13: Update some notes when doing lab1
 9.14: Lab1 finished
 9.20: Almost finish lab2 bomb and add simple summary for chapter 3 here.
+9.26: Sorry for stopping updating these days... I will come back soon.
 
 ## Chapter 1: Representing and Manipulating information
 
